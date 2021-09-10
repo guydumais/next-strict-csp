@@ -1,0 +1,11 @@
+node_modules
+*.log
+.next
+.history
+package-lock.json
+yarn.lock
+notes.md
+.DS_Store
+src
+tsconfig.json
+.babelrc
