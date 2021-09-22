@@ -52,12 +52,24 @@ class NextStrictCSP extends _document_1.Head {
         NextStrictCSP.inlineJsHashed = NextStrictCSP.inlineJs.map((inlineJs) => {
             return cspHashOf(inlineJs);
         });
+        
+        const cspValues = [ 
+          "default-src 'none'", 
+          "object-src 'none'", 
+          "img-src 'self' *.bam-x.com *.narrativ.com https:", 
+          // `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com`, 
+          `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'strict-dynamic' ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} 'unsafe-inline' http: https:`, 
+          "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'unsafe-inline'", 
+          "font-src 'self' *.bam-x.com *.narrativ.com", 
+          "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com", 
+        ].join('; '); 
+        
         const newChildren = [];
         react_1.default.Children.forEach(this.props.children, (child) => {
             if (child.type === 'meta') {
                 if (child.props?.httpEquiv !== undefined) {
                     if (child.props.httpEquiv === 'Content-Security-Policy') {
-                        child.props.content = `script-src 'strict-dynamic' ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} 'unsafe-inline' http: https:;`;
+                        child.props.content = cspValues;
                         child.props.slug = __NEXT_DATA__.page;
                     }
                 }
