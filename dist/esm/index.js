@@ -46,6 +46,18 @@ export class NextStrictCSP extends Head {
         NextStrictCSP.inlineJsHashed = NextStrictCSP.inlineJs.map((inlineJs) => {
             return cspHashOf(inlineJs);
         });
+        
+        const cspValues = [ 
+          "default-src 'none'", 
+          "object-src 'none'", 
+          "img-src 'self' *.bam-x.com *.narrativ.com https:", 
+          // `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com`, 
+          `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'strict-dynamic' ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} 'unsafe-inline' http: https:`, 
+          "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'unsafe-inline'", 
+          "font-src 'self' *.bam-x.com *.narrativ.com", 
+          "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com", 
+        ].join('; '); 
+
         const newChildren = [];
         React.Children.forEach(this.props.children, (child) => {
             if (child.type === 'meta') {
