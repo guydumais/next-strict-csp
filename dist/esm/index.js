@@ -63,7 +63,7 @@ export class NextStrictCSP extends Head {
             if (child.type === 'meta') {
                 if (child.props?.httpEquiv !== undefined) {
                     if (child.props.httpEquiv === 'Content-Security-Policy') {
-                        child.props.content = `script-src 'strict-dynamic' ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} 'unsafe-inline' http: https:;`;
+                        child.props.content = cspValues;
                         child.props.slug = __NEXT_DATA__.page;
                     }
                 }
