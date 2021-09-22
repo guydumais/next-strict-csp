@@ -52,7 +52,7 @@ export class NextStrictCSP extends Head {
           "object-src 'none'", 
           "img-src 'self' *.bam-x.com *.narrativ.com https:", 
           // `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com`, 
-          `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'strict-dynamic' ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} 'unsafe-inline' http: https:`, 
+          `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} http: https:`,
           "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'unsafe-inline'", 
           "font-src 'self' *.bam-x.com *.narrativ.com", 
           "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com", 
