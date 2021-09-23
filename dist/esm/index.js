@@ -50,12 +50,14 @@ export class NextStrictCSP extends Head {
         const cspValues = [ 
           "default-src 'none'", 
           "object-src 'none'", 
-          "img-src 'self' *.bam-x.com *.narrativ.com https:", 
-          // `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com`, 
-          `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} http: https:`,
-          "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'unsafe-inline'", 
-          "font-src 'self' *.bam-x.com *.narrativ.com", 
-          "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com", 
+          "frame-ancestors 'self'",
+          "img-src 'self' *.bam-x.com *.narrativ.com https:",
+          // `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com`,
+          `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com *.google-analytics.com ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')}`,
+          "manifest-src 'self'",
+          "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com",
+          "font-src 'self' *.bam-x.com *.narrativ.com",
+          "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com *.datadoghq.com *.google-analytics.com",
         ].join('; '); 
 
         const newChildren = [];
