@@ -59,9 +59,10 @@ class NextStrictCSP extends _document_1.Head {
           "img-src 'self' *.bam-x.com *.narrativ.com https:", 
           // `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com`, 
           `script-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com ${cspHashOf(nextJsSPA)} ${NextStrictCSP.inlineJsHashed.join(' ')} http: https:`,
-          "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com 'unsafe-inline'", 
-          "font-src 'self' *.bam-x.com *.narrativ.com", 
-          "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com", 
+          "manifest-src 'self'",
+          "style-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com",
+          "font-src 'self' *.bam-x.com *.narrativ.com",
+          "connect-src 'self' *.bam-x.com *.narrativ.com *.launchdarkly.com *.datadoghq.com",
         ].join('; '); 
         
         const newChildren = [];
